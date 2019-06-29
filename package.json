@@ -17,8 +17,8 @@
     "deploy": "yarn run lint && yarn run build && yarn run render",
     "lint": "yarn run lint:scripts && yarn run lint:styles",
     "lint-fix": "yarn run lint-fix:scripts && yarn run lint-fix:styles",
-    "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src/scripts/**",
-    "lint:styles": "stylelint ./src/styles/**",
+    "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src/scripts/**/*.ts",
+    "lint:styles": "stylelint ./src/styles/**/*.scss",
     "lint-fix:scripts": "eslint --fix ./src/scripts/**/*.ts",
     "lint-fix:styles": "stylelint --fix ./src/styles/**/*.scss"
   },
