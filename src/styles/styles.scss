@@ -1,4 +1,10 @@
-h1 {
-  color: red;
-  font-size: 2rem;
-}
+@tailwind base;
+@tailwind components;
+
+@import './variables';
+@import './layout';
+@import './typography';
+
+@tailwind utilities;
+
+

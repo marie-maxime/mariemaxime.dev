@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const path = require('path');
 const glob = require('glob-all');
 const env = process.env.NODE_ENV || 'development';
@@ -13,12 +14,50 @@ class TailwindExtractor {
   }
 }
 
-const browsersync = [
+const prodPlugins = [
   new BrowserSyncPlugin({
     host: 'localhost',
     port: 3000,
     proxy: 'localhost:8000',
-  })
+    files: [
+      path.resolve(__dirname, "../../../views/**/*.pug"),
+      path.resolve(__dirname, "../../../src/**/*.ts"),
+      path.resolve(__dirname, "../../../src/**/*.scss"),
+    ],
+  }),
+
+  new ImageminPlugin({
+    optipng: {
+      optimizationLevel: 7,
+    },
+    gifsicle: {
+      optimizationLevel: 3,
+    },
+    svgo: {
+      plugins: [
+        { cleanupAttrs: true },
+        { removeDoctype: true },
+        { removeXMLProcInst: true },
+        { removeComments: true },
+        { removeMetadata: true },
+        { removeUselessDefs: true },
+        { removeEditorsNSData: true },
+        { removeEmptyAttrs: true },
+        { removeHiddenElems: false },
+        { removeEmptyText: true },
+        { removeEmptyContainers: true },
+        { cleanupEnableBackground: true },
+        { removeViewBox: true },
+        { cleanupIDs: false },
+        { convertStyleToAttrs: true },
+      ]
+    },
+    plugins: [
+      require('imagemin-mozjpeg')({
+        quality: 100,
+      }),
+    ],
+  }),
 ]
 
 const defaultPlugins = [
@@ -51,7 +90,7 @@ const defaultPlugins = [
   new ManifestPlugin(),
 ]
 
-const plugins = env === 'production' ? defaultPlugins : [...defaultPlugins, ...browsersync];
+const plugins = env === 'production' ? defaultPlugins : [...defaultPlugins, ...prodPlugins];
 console.log(env);
 module.exports = [
   ...plugins

@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const postcss = require('../postcss.config');
 
 module.exports = {
   rules: [
@@ -32,9 +33,38 @@ module.exports = {
             importLoader: 2
           }
         },
+        {
+          loader: 'postcss-loader',
+          options: postcss,
+        },
         "sass-loader"
       ]
     },
+
+    {
+      test: /images[\\/].*\.(ico|jpg|jpeg|png|svg|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: file => `images/[name].${utils.filehash(file).substr(0, 10)}.[ext]`,
+          },
+        },
+      ],
+    },
+
+    {
+      test: /fonts[\\/].*\.(eot|svg|ttf|woff|woff2)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: file => `fonts/[name].${utils.filehash(file).substr(0, 10)}.[ext]`,
+          },
+        },
+      ],
+    },
+
   ]
 }
 
