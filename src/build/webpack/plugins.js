@@ -13,7 +13,6 @@ class TailwindExtractor {
   }
 }
 
-
 const browsersync = [
   new BrowserSyncPlugin({
     host: 'localhost',
@@ -41,8 +40,8 @@ const defaultPlugins = [
   new MiniCssExtractPlugin({
     // Options similar to the same options in webpackOptions.output
     // both options are optional
-    filename: 'css/styles.[contenthash:8].css',
-    chunkFilename: 'css/[id].[contenthash:8].css',
+    filename: env === 'production' ? 'css/styles.[contenthash:8].css' : 'css/styles.css',
+    chunkFilename: env === 'production' ? 'css/[id].[contenthash:8].css' : 'css/[id].css',
   }),
 
   new CleanWebpackPlugin('dist', {
