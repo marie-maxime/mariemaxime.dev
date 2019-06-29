@@ -1,11 +1,10 @@
-const { ProvidePlugin, WatchIgnorePlugin } = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
-const RemovePlugin = require('remove-files-webpack-plugin');
-const glob = require('glob-all');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
+const glob = require('glob-all');
 
 
 class TailwindExtractor {
@@ -18,45 +17,33 @@ module.exports = [
 
   new PurgecssPlugin({
     paths: glob.sync([
-      'app/**/*.php',
-      'resources/views/**/*.php',
-      'resources/assets/scripts/**/*.js',
+      'src/scripts/**/*.ts',
+      'views/**/*.pug',
     ]),
-    whitelist: [ // Only if you need it!
-      'is-animating',
-      'transition-fade'
-    ],
+    whitelist: [],
     extractors: [
       {
         extractor: TailwindExtractor,
-        extensions: ["ts", 'html']
+        extensions: ["ts", 'html', 'pug']
       }
     ],
   }),
 
-  new CleanWebpackPlugin(utils.distPath(), {
-    root: utils.themeRootPath(),
+  new BrowserSyncPlugin({
+    host: 'localhost',
+    port: 3000,
+    proxy: 'localhost:8000',
   }),
-  new WatchIgnorePlugin([
-    utils.distImagesPath('sprite.png'),
-    utils.distImagesPath('sprite@2x.png'),
-  ]),
-  extractSass,
-  spriteSmith,
-  browsersync,
 
-  new RemovePlugin({
-    after: {
-      test: [
-        {
-          folder: utils.distPath() + '/js',
-          method: (filePath) => {
-            return new RegExp(/^style.*$/).test(filePath);
-          },
-          recursive: true
-        }
-      ]
-    }
+  new MiniCssExtractPlugin({
+    // Options similar to the same options in webpackOptions.output
+    // both options are optional
+    filename: 'css/styles.[contenthash:8].css',
+    chunkFilename: 'css/[id].[contenthash:8].css',
+  }),
+
+  new CleanWebpackPlugin('dist', {
+    root: path.resolve(__dirname, "../../..")
   }),
 
   new ManifestPlugin(),
