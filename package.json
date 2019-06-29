@@ -16,12 +16,13 @@
     "build": "cross-env NODE_ENV=development webpack --config src/build/webpack.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config src/build/webpack.js",
     "render": "node render.js",
-    "lint": "run-s -cl lint:scripts lint:styles",
-    "lint-fix": "run-s -cl lint-fix:scripts lint-fix:styles",
+    "deploy": "yarn run lint && yarn run build:prod && yarn run render",
+    "lint": "yarn run lint:scripts && yarn run lint:styles",
+    "lint-fix": "yarn run lint-fix:scripts && yarn run lint-fix:styles",
     "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src/scripts/**",
     "lint:styles": "stylelint ./src/styles/**",
-    "lint-fix:scripts": "eslint --fix ./resources/scripts/**",
-    "lint-fix:styles": "stylelint --fix ./resources/styles/**"
+    "lint-fix:scripts": "eslint --fix ./src/scripts/**",
+    "lint-fix:styles": "stylelint --fix ./src/styles/**"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

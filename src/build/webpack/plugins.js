@@ -5,7 +5,7 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 const glob = require('glob-all');
-
+const env = process.env.NODE_ENV || 'development';
 
 class TailwindExtractor {
   static extract(content) {
@@ -13,8 +13,16 @@ class TailwindExtractor {
   }
 }
 
-module.exports = [
 
+const browsersync = [
+  new BrowserSyncPlugin({
+    host: 'localhost',
+    port: 3000,
+    proxy: 'localhost:8000',
+  })
+]
+
+const defaultPlugins = [
   new PurgecssPlugin({
     paths: glob.sync([
       'src/scripts/**/*.ts',
@@ -29,12 +37,7 @@ module.exports = [
     ],
   }),
 
-  new BrowserSyncPlugin({
-    host: 'localhost',
-    port: 3000,
-    proxy: 'localhost:8000',
-  }),
-
+  
   new MiniCssExtractPlugin({
     // Options similar to the same options in webpackOptions.output
     // both options are optional
@@ -47,4 +50,10 @@ module.exports = [
   }),
 
   new ManifestPlugin(),
+]
+
+const plugins = env === 'production' ? defaultPlugins : [...defaultPlugins, ...browsersync];
+console.log(env);
+module.exports = [
+  ...plugins
 ];
