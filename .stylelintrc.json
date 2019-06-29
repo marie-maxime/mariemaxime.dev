@@ -1,0 +1,23 @@
+{
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "responsive",
+          "variants",
+          "screen",
+          "function",
+          "mixin",
+          "if",
+          "return"
+        ]
+      }
+    ],
+    "no-empty-source": null,
+    "indentation": 2
+  }
+}
