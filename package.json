@@ -7,7 +7,6 @@
   "license": "ISC",
   "dependencies": {
     "@stimulus/polyfills": "^1.1.1",
-    "node-sass": "^4.12.0",
     "stimulus": "^1.1.1"
   },
   "scripts": {
@@ -20,13 +19,14 @@
     "lint-fix": "yarn run lint-fix:scripts && yarn run lint-fix:styles",
     "lint:scripts": "eslint --ext .js,.jsx,.ts,.tsx ./src/scripts/**",
     "lint:styles": "stylelint ./src/styles/**",
-    "lint-fix:scripts": "eslint --fix ./src/scripts/**",
-    "lint-fix:styles": "stylelint --fix ./src/styles/**"
+    "lint-fix:scripts": "eslint --fix ./src/scripts/**/*.ts",
+    "lint-fix:styles": "stylelint --fix ./src/styles/**/*.scss"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "autoprefixer": "^8.4.1",
     "babel-loader": "^8.0.6",
     "babel-preset-airbnb": "^4.0.0",
@@ -36,12 +36,12 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "cssnano": "^4.1.10",
-    "eslint": "^4.19.1",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-typescript": "^4.0.0",
     "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.14.2",
     "express": "^4.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
@@ -53,6 +53,7 @@
     "import-glob": "^1.5.0",
     "loader-utils": "^1.1.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "postcss-extract-media-query": "^1.2.0",
