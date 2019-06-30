@@ -1,3 +1,13 @@
-h1 {
-  @apply text-center text-4xl text-red-500; 
+.big-title {
+  @apply text-mobile-big-title leading-break font-black; 
+}
+
+.subtitle {
+  @apply text-mobile-subtitle leading-none  w-1/2 font-black py-2;
+}
+
+.techs-title {
+  @apply text-center pt-1;
+  font-size: 5vmin;
+  letter-spacing: 0.15rem;
 }

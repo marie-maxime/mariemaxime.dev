@@ -22,13 +22,14 @@ module.exports = {
      * Handle styles.
      */
     {
-      test: /\.scss$/,
+      test: /\.s(a|c)ss$/,
+      exclude: /node_modules/,
       use: [
         MiniCssExtractPlugin.loader,
         {
           loader: "css-loader",
           options: {
-            modules: true,
+            modules: false,
             sourceMap: true,
             importLoader: 2
           }
@@ -47,7 +48,7 @@ module.exports = {
         {
           loader: 'file-loader',
           options: {
-            name: file => `images/[name].${utils.filehash(file).substr(0, 10)}.[ext]`,
+            name: file => `assets/[name].[ext]`,
           },
         },
       ],
@@ -59,7 +60,7 @@ module.exports = {
         {
           loader: 'file-loader',
           options: {
-            name: file => `fonts/[name].${utils.filehash(file).substr(0, 10)}.[ext]`,
+            name: file => `assets/[name].[ext]`,
           },
         },
       ],

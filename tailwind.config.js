@@ -1,3 +1,16 @@
+
+
+const MAX_SCREEN_WIDTH = '1200';
+const MIN_SCREEN_WIDTH = '320';
+
+const responsiveSize = (minSize, maxSize) => {
+  return `calc(${minSize}px + (${maxSize} - ${minSize}) * ((100vw - ${MIN_SCREEN_WIDTH}px) / (${MAX_SCREEN_WIDTH} - ${MIN_SCREEN_WIDTH})))`
+}
+
+function convertPxToRem(px) {    
+  return `${ px / 16 }rem`;
+}
+
 module.exports = {
   prefix: '',
   important: false,
@@ -257,10 +270,12 @@ module.exports = {
       lg: '1.125rem',
       xl: '1.25rem',
       '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
+      '3xl':  responsiveSize(30, 30 * 2),
+      '4xl':  responsiveSize(85, 85 * 2),
       '5xl': '3rem',
       '6xl': '4rem',
+      'mobile-big-title': '26vmin',
+      'mobile-subtitle': '10vmin',
     },
     fontWeight: {
       hairline: '100',
@@ -292,6 +307,7 @@ module.exports = {
       widest: '0.1em',
     },
     lineHeight: {
+      break: '0.85',
       none: '1',
       tight: '1.25',
       snug: '1.375',

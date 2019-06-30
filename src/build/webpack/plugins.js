@@ -4,6 +4,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const glob = require('glob-all');
 const env = process.env.NODE_ENV || 'development';
@@ -66,7 +67,7 @@ const defaultPlugins = [
       'src/scripts/**/*.ts',
       'views/**/*.pug',
     ]),
-    whitelist: [],
+    whitelist: [ 'subtitle' ],
     extractors: [
       {
         extractor: TailwindExtractor,
@@ -74,7 +75,6 @@ const defaultPlugins = [
       }
     ],
   }),
-
   
   new MiniCssExtractPlugin({
     // Options similar to the same options in webpackOptions.output
