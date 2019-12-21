@@ -1,0 +1,79 @@
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 16px
+  }
+
+  main {
+    max-width: 1024px;
+    margin: auto;
+    padding-top: 4rem;
+  }
+
+  .big-title {
+    text-align: center;
+    font-size: 7rem;
+    line-height: .85;
+    font-weight: 900;
+  }
+
+  .med-title {
+    text-align: center;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 900;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+  }
+
+  .half-size {
+    width: 100%;
+  }
+
+  .img-profile {
+    height: 25rem;
+    background-repeat: no-repeat;
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .small-title {
+    font-size: 2rem;
+    text-align: center;
+    width: 33rem;
+    margin: 0 auto;
+  }
+
+  .text-block {
+    font-size: 1.5rem;
+    line-height: 1.9;
+    letter-spacing: 0.01rem;
+    word-spacing: 0.02rem;
+
+    p {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+  }
+
+  .title-padding {
+    padding-bottom: 2.5rem;
+  }
+
+  .padding-top {
+    padding-top: 6rem;
+  }
+
+  .padding-bottom {
+    padding-bottom: 6rem;
+  }
+
+  .social-media {
+    max-width: 25rem;
+    margin: auto;
+    transform: scale(1.5);
+  }
+
+  footer {
+    padding-bottom: 3rem;
+  }
+}

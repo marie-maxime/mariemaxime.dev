@@ -1,13 +1,65 @@
+html {
+  font-family: 'Roboto';
+}
+
+body {
+  background-color: #1a202c;
+  font-size: 1rem;
+  color: #f7fafc;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
 .big-title {
-  @apply text-mobile-big-title leading-break font-black; 
+  font-size: 26vmin;
+  line-height: .85;
+  font-weight: 900;
 }
 
-.subtitle {
-  @apply text-mobile-subtitle leading-none  w-1/2 font-black py-2;
+.med-title {
+  font-size: 10vmin;
+  line-height: 1;
+  font-weight: 900;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
 }
 
-.techs-title {
-  @apply text-center pt-1;
+.half-size {
+  width: 50%;
+}
+
+.bg-inverted {
+  background-color: #f7fafc;
+}
+
+.small-title {
+  padding-top: .25rem;
   font-size: 5vmin;
-  letter-spacing: 0.15rem;
+  letter-spacing: .15rem;
+  line-height: 1.5;
+}
+
+.text-block {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  letter-spacing: 0.01rem;
+  word-spacing: 0.02rem;
+
+  p {
+   padding-bottom: 1rem;
+   padding-top: 1rem; 
+  }
+}
+
+.title-inverted {
+  color: #1a202c;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
 }

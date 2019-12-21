@@ -2,5 +2,7 @@
   background-image: url('../images/marie-maxime-tanguay.png');
   width: 60vmin;
   height: 60vmin;
-  @apply m-auto my-4 bg-center bg-contain;
+  margin: 1rem auto;
+  background-position: 50%;
+  background-size: contain;
 }

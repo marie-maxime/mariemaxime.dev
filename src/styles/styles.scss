@@ -1,11 +1,7 @@
-@tailwind base;
-@tailwind components;
-
+@import './normalize';
 @import './variables';
 @import './typography';
 @import './layout';
 @import './images';
 
-@tailwind utilities;
-
-
+@import './desktop/styles';
